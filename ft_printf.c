@@ -10,7 +10,7 @@ int ft_printit(int i, const char *format, va_list ap)
 	else if (format[i] == 's')
 		count += ft_print_s(va_arg(ap, char *));
 	else if (format[i] == 'p')
-		count += ft_print_p(va_arg(ap, unsigned long long));
+		count += ft_print_p(va_arg(ap, unsigned long));
 	else if (format[i] == 'd' || format[i] == 'i')
 		count += ft_print_d(va_arg(ap, int));
 	else if (format[i] == 'u')
@@ -20,7 +20,7 @@ int ft_printit(int i, const char *format, va_list ap)
 	else if (format[i] == 'X')
 		count += ft_print_xx(va_arg(ap, unsigned int));
 	else if (format[i] == '%')
-		count += ft_print_percent();
+		count += ft_print_c(format[i]);
 	return (count);
 }
 int    ft_printf(const char *format, ...)
@@ -37,7 +37,7 @@ int    ft_printf(const char *format, ...)
 		if (format[i] == '%')
 			count += ft_printit(++i, format, ap);
 		else
-			count += ft_putchar(format[i]);
+			count += ft_print_c(format[i]);
 		i++;
 	}
 	return (count);

@@ -4,6 +4,6 @@ int	ft_print_c(int c)
 {
 	int count;
 
-	count = ft_putchar(c);
+	count = write(1, &c, 1);
 	return (count);
 }
