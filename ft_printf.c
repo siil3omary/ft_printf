@@ -20,7 +20,11 @@ int ft_printit(int i, const char *format, va_list ap)
 	else if (format[i] == 'X')
 		count += ft_print_xx(va_arg(ap, unsigned int));
 	else if (format[i] == '%')
-		count += ft_print_c(format[i]);
+		count += ft_print_c('%');
+
+	
+	 
+		
 	return (count);
 }
 int    ft_printf(const char *format, ...)
@@ -34,10 +38,14 @@ int    ft_printf(const char *format, ...)
 	va_start(ap, format);
 	while (format[i])
 	{
-		if (format[i] == '%')
+		if (format[i] == '%'){
+			if (ft_strchr("cspdiuxX%", format[i + 1])){
+
 			count += ft_printit(++i, format, ap);
-		else
-			count += ft_print_c(format[i]);
+			}
+		}
+			else
+				count += ft_print_c(format[i]);
 		i++;
 	}
 	return (count);
